@@ -11,7 +11,7 @@ const MONGO_URL = process.env.MONGO_URL;
 const MONGO_URL_ATLAS = process.env.URL_MONGODB_ATLAS;
 app.use(
   cors({
-    origin: "http://localhost:3000/",
+    origin: "http://localhost:3000",
   })
 );
 app.use(express.json());
