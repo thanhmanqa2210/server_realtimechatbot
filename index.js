@@ -11,7 +11,10 @@ const MONGO_URL = process.env.MONGO_URL;
 const MONGO_URL_ATLAS = process.env.URL_MONGODB_ATLAS;
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "https://realtime-chatapp-navy.vercel.app",
+    ],
   })
 );
 app.use(express.json());
@@ -41,7 +44,9 @@ const io = socket(server, {
   cors: {
     origin: "*",
     credentials: true,
-    allowedHeaders: ["Access-Control-Allow-Origin:http://localhost:3000/"],
+    allowedHeaders: [
+      "Access-Control-Allow-Origin:https://realtime-chatapp-navy.vercel.app",
+    ],
   },
 });
 global.onlineUsers = new Map();
