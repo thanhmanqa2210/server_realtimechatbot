@@ -21,11 +21,14 @@ mongoose
     console.log("DB connection successful");
   })
   .catch((err) => {
-    console.log(err.message,"có lỗi xảy ra");
+    console.log(err.message, "có lỗi xảy ra");
   });
 
 app.get("/", function (req, res) {
   res.send(" Chưa có dữ liệu gì cả !");
+});
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
 });
 app.use("/api/auth/", userRouter);
 app.use("/api/messages/", messageRouter);
@@ -37,6 +40,7 @@ const io = socket(server, {
   cors: {
     origin: "*",
     credentials: true,
+    allowedHeaders: ["Access-Control-Allow-Origin:http://localhost:3000/"],
   },
 });
 global.onlineUsers = new Map();
