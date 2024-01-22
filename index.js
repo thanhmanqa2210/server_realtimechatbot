@@ -15,6 +15,9 @@ app.use(
       "http://localhost:3000",
       "https://realtime-chatapp-navy.vercel.app",
     ],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204,
   })
 );
 app.use(express.json());
