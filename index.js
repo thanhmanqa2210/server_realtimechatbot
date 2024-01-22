@@ -9,7 +9,11 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 const MONGO_URL_ATLAS = process.env.URL_MONGODB_ATLAS;
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json());
 
 mongoose
@@ -26,9 +30,6 @@ mongoose
 
 app.get("/", function (req, res) {
   res.send(" Chưa có dữ liệu gì cả !");
-});
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
 });
 app.use("/api/auth/", userRouter);
 app.use("/api/messages/", messageRouter);
