@@ -8,7 +8,7 @@
         "start": "nodemon index.js"
     },
     "engines": {
-        "node": "19.9.0"
+        "node": "18.0"
     },
     "author": "",
     "dependencies": {
