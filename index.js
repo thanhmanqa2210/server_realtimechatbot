@@ -4,6 +4,7 @@ const cors = require("cors");
 const userRouter = require("./routes/userRoutes");
 const messageRouter = require("./routes/messagesRoute");
 const app = express();
+require("dotenv").config();
 const socket = require("socket.io");
 require("dotenv").config();
 const PORT = process.env.PORT;
@@ -20,6 +21,20 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
+// Add headers before the routes are defined
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", process.env.REACT_URL);
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST,OPTIONS,PUT,PATCH,DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+  next();
+  res.setHeader("Access-Control-Allow-Credentials", true);
+});
 app.use(express.json());
 
 mongoose
